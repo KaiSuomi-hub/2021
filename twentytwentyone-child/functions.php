@@ -63,36 +63,36 @@ add_action('init', function() {
         'exclude_from_search'   => false,
         'publicly_queryable'    => true,
         'rewrite'               => $rewrite,
-        'taxonomies' 	      => array("Software_Development", "Service_Design",  "eCommerce"),
+        'taxonomies' 	      => array('software-development', 'service-design',  'ecommerce'),
         'capability_type'       => 'page',
     );
-    register_post_type('CaseStudy', $args);
+    register_post_type('casestudy', $args);
 
     //* Ok, that's the post, let's create 3 taxonomies for post type CaseStudy
-    //*   "Software Development", "Service Design",  "eCommerce"
+    //*   "Software_Development", "Service_Design",  "eCommerce"
     //todo gonna make the structure as tags
 
-    register_taxonomy('book_genre', ['CaseStudy'], [
-        'label' => __('Genres', 'txtdomain'),
-        'hierarchical' => true,
-        'rewrite' => ['slug' => 'book-genre'],
+    register_taxonomy('subcategory', ['casestudy'], [
+        'label' => __('Subcategories', 'txtdomain'),
+        'hierarchical' => false,
+        'rewrite' => ['slug' => 'Software Development'],
         'show_admin_column' => true,
         'show_in_rest' => true,
         'labels' => [
-            'singular_name' => __('Genre', 'txtdomain'),
-            'all_items' => __('All Genres', 'txtdomain'),
-            'edit_item' => __('Edit Genre', 'txtdomain'),
-            'view_item' => __('View Genre', 'txtdomain'),
-            'update_item' => __('Update Genre', 'txtdomain'),
-            'add_new_item' => __('Add New Genre', 'txtdomain'),
-            'new_item_name' => __('New Genre Name', 'txtdomain'),
-            'search_items' => __('Search Genres', 'txtdomain'),
-            'parent_item' => __('Parent Genre', 'txtdomain'),
-            'parent_item_colon' => __('Parent Genre:', 'txtdomain'),
-            'not_found' => __('No Genres found', 'txtdomain'),
+            'singular_name' => __('Subcategory', 'txtdomain'),
+            'all_items' => __('All subcategories', 'txtdomain'),
+            'edit_item' => __('Edit subcategory', 'txtdomain'),
+            'view_item' => __('View subcategory', 'txtdomain'),
+            'update_item' => __('Update subcategory', 'txtdomain'),
+            'add_new_item' => __('Add subcategory', 'txtdomain'),
+            'new_item_name' => __('New Subcategory Name', 'txtdomain'),
+            'search_items' => __('Search subcategories', 'txtdomain'),
+            'parent_item' => __('Parent subcategory', 'txtdomain'),
+            'parent_item_colon' => __('Parent subcategory:', 'txtdomain'),
+            'not_found' => __('No subcategories found', 'txtdomain'),
         ]
     ]);
-    register_taxonomy_for_object_type('book_genre', 'CaseStudy');
+    register_taxonomy_for_object_type('subcategory', 'casestudy');
 })
 
 
