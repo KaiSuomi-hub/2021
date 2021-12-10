@@ -20,9 +20,11 @@ function twentytwentyone_child_enqueue_styles() {
 }
 add_action( 'wp_enqueue_scripts', 'twentytwentyone_child_enqueue_styles' );
 
+//todo Bootstrap! I choose you!
 function twentytwentyone_child_enqueue_scripts() {
-    //wp_enqueue_script('slick', get_stylesheet_directory_uri() . '/slick-1.8.1/slick.min.js', array( 'jquery' ));
-    //wp_enqueue_script('lightbox', get_stylesheet_directory_uri() . '/lightbox/lightbox.js', array( 'jquery' ));
+	wp_enqueue_script( 'boot1','https://code.jquery.com/jquery-3.6.0.min.js', array('jquery'));
+	wp_enqueue_script( 'boot2','https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/js/bootstrap.min.js', array('jquery'));
+	wp_enqueue_script( 'boot3','https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/js/bootstrap.bundle.min.js', array('jquery'));
 }
 
 add_action( 'wp_enqueue_scripts', 'twentytwentyone_child_enqueue_scripts' );
@@ -40,13 +42,13 @@ add_action('init', function() {
         'add_new_item'          => __('Add a new study', 'text_domain'),
     );
     $rewrite = array(
-        'slug'                  => 'CaseStudy',
+        'slug'                  => 'casestudy',
         'with_front'            => true,
         'pages'                 => true,
         'feeds'                 => true,
     );
     $args = array(
-        'label'                 => __('CaseStudy', 'text_domain'),
+        'label'                 => __('casestudy', 'text_domain'),
         'description'         	=> __('Case studies of eServices'),
         'labels'                => $labels,
         'supports'            	=> array( 'title', 'editor', 'excerpt', 'author', 'thumbnail', 'revisions', 'custom-fields'),
@@ -63,13 +65,12 @@ add_action('init', function() {
         'exclude_from_search'   => false,
         'publicly_queryable'    => true,
         'rewrite'               => $rewrite,
-        'taxonomies' 	      => array('software-development', 'service-design',  'ecommerce'),
         'capability_type'       => 'page',
     );
     register_post_type('casestudy', $args);
 
-    //* Ok, that's the post, let's create 3 taxonomies for post type CaseStudy
-    //*   "Software_Development", "Service_Design",  "eCommerce"
+    //* Ok, that's the post, let's create 3 taxonomies for post type casestudy
+    //*   "Software Development", "Service Design",  "eCommerce"
     //todo gonna make the structure as tags
 
     register_taxonomy('subcategory', ['casestudy'], [
@@ -93,8 +94,22 @@ add_action('init', function() {
         ]
     ]);
     register_taxonomy_for_object_type('subcategory', 'casestudy');
-})
+	//!Populate, remember to not use camelCase and so on
+	wp_insert_term('Software development', 'subcategory');
+	wp_insert_term('Service Design', 'subcategory');
+	wp_insert_term('eCommerce', 'subcategory');
+});
+
+//*Make excerpt 20 words and a bit niocer
+function wpdocs_custom_excerpt_length( $length ) {
+    return 20;
+}
 
 
+function homepageCustomExcerpt() {
+        add_filter( 'excerpt_length', 'wpdocs_custom_excerpt_length', 999 );
+}
+
+add_action( 'init', 'homepageCustomExcerpt' );
 
 ?>
