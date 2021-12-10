@@ -14,4 +14,45 @@ Child theme for 2021 with several post types
 
 
 
-1. 
+<h1>Todo</h1>
+____________________________________________________________________________________
+
+
+2. Create content type specification/sub category
+   "Software Development", "Service Design",  "eCommerce"
+
+3. Populate db with faux data
+
+4. Create a page listing three case studies of each subcategory, so a total of nine case studies are shown at the same time
+
+5. A case study is shown only once in the listing page
+
+6. In the listing show
+   1. <b>Name of study</b>
+   2. <b>Time of posting</b><i>d.m.yyyy	j.n.Y	7.1.1970</i>
+   3. <p>Excerpt of 20 words</p>
+   4. <b>Read more-link</b>
+   5. If the post has a horizontal picture it is shown
+   6. If the post is in several subcategories they are shown
+
+7.  Make the sub the clean and well organized
+
+
+____________________________________________________________________________________
+<h1>Todo</h1>
+1. Create content type
+
+
+
+<h1>Done</h1>
+____________________________________________________________________________________
+
+
+
+
+
+
+
+
+____________________________________________________________________________________
+<h1>Done</h1>
