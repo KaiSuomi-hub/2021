@@ -42,6 +42,8 @@ ________________________________________________________________________________
 
 <h1>Done</h1>
 ____________________________________________________________________________________
+
+
 1. Create content type
 2. Create content type specification/sub category
    "Software Development", "Service Design",  "eCommerce"
