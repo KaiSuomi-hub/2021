@@ -29,29 +29,32 @@ body {
 .wrapper {
   position: relative;
   overflow-x: scroll;
-  left: 40px;
-  height: 100vh;
+  left: 0px;
+  height: 70vh;
   margin: 0 auto;
   font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica,
     Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
   display: flex;
+  max-width: 90vw;
 }
 
 .card {
   overflow: hidden;
-  min-width: 50vw;
-  height: 60vh;
+  min-width: 350px;
+  height: 53vh;
+
+  /*height: 50vh;*/
   position: sticky;
-  left: 10vw;
-  top: 5vh;
+  left: 1vw;
+  top: 2vh;
   border: 1px solid #ccc;
   box-shadow: 5px -5px 5px rgba(0, 0, 0, 0.1);
   background-color: white;
   color: #333;
-  padding: 40px;
+  padding: 10px;
   border-radius: 10px;
-  margin-bottom: 10vw;
-  margin-right: 20vw;
+  margin-bottom: 4vw;
+  margin-right: 4vw;
 }
  h2 {
     padding: 0;
@@ -60,21 +63,38 @@ body {
     display: block;
     font-size: 14px;
     color: #0c4eb9;
-  } 
+  }
 
 
 .studyname{
 
 }
 
-.studytime{
+.studydate{
+font-size: 1rem;
+font-style: italic;
+}
+.studysubcat{
+font-size: -global--font-size-xs;
+}
+
+.studyimage{
 
 }
+
+
 
 .entryexcerpt{
 
 }
 
+/* pull content up a bit*/
+div#content {
+  margin-top: -1vh;
+}
+header#masthead {
+  margin-top: -4vh;
+}
 
 :root{
 		/* Font Size */

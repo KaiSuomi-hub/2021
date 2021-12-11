@@ -101,15 +101,24 @@ add_action('init', function() {
 });
 
 //*Make excerpt 20 words and a bit niocer
-function wpdocs_custom_excerpt_length( $length ) {
+function custom_excerpt_length( $length ) {
     return 20;
 }
 
+function homepagecustomexcerpt() {
+        add_filter( 'excerpt_length', 'custom_excerpt_length');
+}
+add_action( 'init', 'homepagecustomexcerpt' );
 
-function homepageCustomExcerpt() {
-        add_filter( 'excerpt_length', 'wpdocs_custom_excerpt_length', 999 );
+function excerpt_read_more($more) {
+    global $post;
+ return '<br><a href="'. get_permalink($post->ID) . '">>>Read more<<</a>';
 }
 
-add_action( 'init', 'homepageCustomExcerpt' );
+add_filter('excerpt_more', 'excerpt_read_more', 11); //! What's overriding this? This is the min priority that works.
+
+
+
+
 
 ?>

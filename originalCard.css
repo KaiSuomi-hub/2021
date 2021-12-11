@@ -1,0 +1,109 @@
+html,
+body {
+  margin: 0;
+  height: 100%;
+}
+
+body {
+  position: relative;
+  background: linear-gradient(#e8e8e8, #e0e0e0);
+  background-size: cover;
+}
+
+.wrapper {
+  position: relative;
+  overflow-x: scroll;
+  left: 40px;
+  height: 100vh;
+  margin: 0 auto;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+  display: flex;
+}
+
+.card {
+  overflow: hidden;
+  min-width: 50vw;
+  height: 60vh;
+  position: sticky;
+  left: 10vw;
+  top: 5vh;
+  border: 1px solid #ccc;
+  box-shadow: 5px -5px 5px rgba(0, 0, 0, 0.1);
+  background-color: white;
+  color: #333;
+  padding: 40px;
+  border-radius: 10px;
+  margin-bottom: 10vw;
+  margin-right: 20vw;
+}
+.card h2 {
+  padding: 0;
+}
+.card span {
+  display: block;
+  font-size: 14px;
+  color: #0c4eb9;
+}
+
+.card:nth-child(1n) {
+  left: 20px;
+  left: 167px;
+  top: 86px;
+  transform: rotate(0deg);
+}
+
+.card:nth-child(2n) {
+  left: 40px;
+  left: 88px;
+  top: 84px;
+  transform: rotate(0deg);
+}
+
+.card:nth-child(3n) {
+  left: 60px;
+  left: 171px;
+  top: 53px;
+  transform: rotate(-1deg);
+}
+
+.card:nth-child(4n) {
+  left: 80px;
+  left: 80px;
+  top: 132px;
+  transform: rotate(1deg);
+}
+
+.card:nth-child(5n) {
+  left: 100px;
+  left: 9px;
+  top: 69px;
+  transform: rotate(0deg);
+}
+
+.card:nth-child(6n) {
+  left: 120px;
+  left: 25px;
+  top: 129px;
+  transform: rotate(1deg);
+}
+
+.card:nth-child(7n) {
+  left: 140px;
+  left: 47px;
+  top: 131px;
+  transform: rotate(0deg);
+}
+
+.card:nth-child(8n) {
+  left: 160px;
+  left: 51px;
+  top: 46px;
+  transform: rotate(0deg);
+}
+
+.card:nth-child(9n) {
+  left: 180px;
+  left: 37px;
+  top: 89px;
+  transform: rotate(1deg);
+}

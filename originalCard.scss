@@ -1,0 +1,57 @@
+html,
+body {
+  margin: 0;
+  height: 100%;
+}
+
+body {
+  position: relative;
+  background: linear-gradient(#e8e8e8, #e0e0e0);
+  background-size: cover;
+}
+
+.wrapper {
+  position: relative;
+  overflow-x: scroll;
+  left: 40px;
+  height: 100vh;
+  margin: 0 auto;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica,
+    Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+  display: flex;
+}
+
+.card {
+  overflow: hidden;
+  min-width: 50vw;
+  height: 60vh;
+  position: sticky;
+  left: 10vw;
+  top: 5vh;
+  border: 1px solid #ccc;
+  box-shadow: 5px -5px 5px rgba(0, 0, 0, 0.1);
+  background-color: white;
+  color: #333;
+  padding: 40px;
+  border-radius: 10px;
+  margin-bottom: 10vw;
+  margin-right: 20vw;
+
+  h2 {
+    padding: 0;
+  }
+  span {
+    display: block;
+    font-size: 14px;
+    color: #0c4eb9;
+  }
+}
+
+@for $i from 1 through 9 {
+  .card:nth-child(#{$i}n) {
+    left: $i * 20px;
+    left: random(200) + $i * 1px;
+    top: random(130) + $i * 1px;
+    transform: rotate(random(3) - 2 * 1deg);
+  }
+}

@@ -17,21 +17,38 @@
  */
 
 get_header(); ?>
+
+
 <div class="wrapper">
 <?php
 $time = get_post_time( 'F j, Y', TRUE,);
 $loop = new WP_Query( array( 'post_type' => 'casestudy', 'posts_per_page' => 10 ) );
 while ( $loop->have_posts() ) : $loop->the_post();
-the_title( '<div class="card">
+the_title('<div class="card">
 <div class="studyname">
 <h2 class="entry-title">
 <a href="' . get_permalink() . '" title="' . the_title_attribute( 'echo=0' ) . '" rel="bookmark">', '</a></h2></div>' );
 echo '<div class="studydate">'.get_post_time( 'j.n.Y', TRUE,).'</div>';
-
 ?>
+<div class="studysubcat">
+<?php
+$terms = get_the_terms( $post->ID , 'subcategory' );
+print_r($terms);
+/*foreach( $terms as $term ) {
+    echo $term->name;
+    break;
+    unset($term);
+}*/ ?>
+</div>
+
     <div class="entryexcerpt">
         <?php the_excerpt(); ?>
     </div>
+
+    <div class="studyimage">
+    <?php the_post_thumbnail('thumbnail'); ?>
+    </div>
+
 	</div>
 <?php endwhile;
 
