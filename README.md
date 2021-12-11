@@ -30,12 +30,14 @@ ________________________________________________________________________________
    2. <b>Time of posting</b><i>d.m.yyyy	j.n.Y	7.1.1970</i> CHECK
    3. <p>Excerpt of 20 words</p> CHECK
    4. <b>Read more-link</b> CHECK
-   5. If the post has a horizontal picture it is shown 
+   5. If the post has a horizontal picture it is shown
    6. If the post is in several subcategories they are shown
+      edit. Show  _ALL_ subcategories 😂CHECK
 
 7.  Make the subtheme clean and well organized
-
-
+8. Separate the the card from index to it's own card.php element
+9. Add a link to load more card for each subcategory, ajax?
+10. Make the tags in listing links
 ____________________________________________________________________________________
 <h1>Todo</h1>
 
