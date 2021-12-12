@@ -25,7 +25,10 @@ body {
   background: linear-gradient(#e8e8e8, #e0e0e0);
   background-size: cover;
 }
-
+:root{
+--global--color-green: #e4e4e4;
+--global--color-background:red;
+}
 .wrapper {
   position: relative;
   /* overflow-x: scroll; */
@@ -91,7 +94,7 @@ padding: 0px 5px 0px 5px;
 .studysubcat{
 font-size: -global--font-size-xs;
 float: left;
-min-width: 50%;
+width: 50%;
 text-align: center;
 }
 
@@ -123,4 +126,47 @@ header#masthead {
 /** Make single post headline centered  */
 .singular .entry-title {
    text-align: center;
+}
+
+.hide{
+  display: none;
+}
+.nice{
+  width: 340px;
+  text-align: center;
+}
+#firstcol{
+float: left;
+width: 33%;
+margin-left: -7%;
+}
+#secondcol{
+float: left;
+width: 33%;
+background-color: #ccc;
+}
+#thirdcol{
+float: left;
+width: 33%;
+background-color: #888;
+}
+
+@media (max-width: 768px) {
+  #firstcol{
+    float:none;
+    width: 90%;
+    margin-left: -28%;
+    }
+    #secondcol{
+    float: none;
+    width: 90%;
+    background-color: #ccc;
+    margin-left: -28%;
+    }
+    #thirdcol{
+    float: left;
+    width: 90%;
+    background-color: #888;
+    margin-left: -28%;
+    }
 }

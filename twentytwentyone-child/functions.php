@@ -16,16 +16,15 @@ if ( ! defined( 'ABSPATH' ) ) {
 
 function twentytwentyone_child_enqueue_styles() {
 	wp_enqueue_style('hello-elementor-child-style', get_stylesheet_directory_uri() . '/style.css');
-	wp_enqueue_style('fontawesome', get_stylesheet_directory_uri() . '/fontawesome/font-awesome.min.css');
 }
 add_action( 'wp_enqueue_scripts', 'twentytwentyone_child_enqueue_styles' );
 
-//todo Bootstrap! I choose you!
+//todo jquery! I choose you!...if I have time...
 function twentytwentyone_child_enqueue_scripts() {
 	wp_enqueue_script( 'boot1','https://code.jquery.com/jquery-3.6.0.min.js', array('jquery'));
-	wp_enqueue_script( 'boot2','https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/js/bootstrap.min.js', array('jquery'));
-	wp_enqueue_script( 'boot3','https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/js/bootstrap.bundle.min.js', array('jquery'));
+    wp_enqueue_script('casestudy',get_stylesheet_directory_uri() . '/assets/js/casestudy.js',	array( 'jquery' ));
 }
+
 
 add_action( 'wp_enqueue_scripts', 'twentytwentyone_child_enqueue_scripts' );
 
@@ -118,7 +117,101 @@ function excerpt_read_more($more) {
 add_filter('excerpt_more', 'excerpt_read_more', 11); //! What's overriding this? This is the min priority that works.
 
 
+function get_by_topic($topic){
+	//todo begin variables
+	$loop = new WP_Query(array( 'post_type' => 'casestudy','posts_per_page' => 10)); //* , 'posts_per_page' => 10 use this to limit amounts searched. Now just get all as we have 12 posts total
+	echo '<div class="wrapper '.$topic.'">';
+	//? begin loop for post that has the right term
+    echo '<span class="nice"><p>Displaying content from '.$topic.'</p></span>';
+	while ($loop->have_posts()) : $loop->the_post();
+        $table_name = $wpdb->prefix . "id";
+		$terms = get_the_terms($loop->ID, 'subcategory'); //*get the terms under "subcategory"
+		$xtermcount = count($terms); //* as the get_the_terms prints out arrays, count them
+	    //* Go through all the terms and see if slug matched the one searched for with $topic
+	    //* Use a class that either hides or shows the card according to points
+        $x=0;
+        while ($xtermcount>0) {
+			$xtermcount--;
+			$posted = array_column($terms, 'slug', )[$xtermcount];
+            if ($posted == $topic){
+					$x=3; //* Correct topic
+					}else{
+                    $x--; //* minus a point if not correct topic
+					}
+            };
+            if ($x>0){
+                $hide = "";
+            }else{
+                $hide = "hide";
+            }
+			//* If the term matches use class don't hide
+            $postid = get_the_ID();
+					the_title('<div id="'.$postid.'" class="card '.$hide.' '.$topic.'-card">
+					<div class="studyname">
+					<h2 class="entry-title">
+					<a href="'.get_permalink().
+					'" title="' .
+					the_title_attribute('echo=0').
+					'" rel="bookmark">',
+					'</a></h2></div>');
 
+				echo '<div class="sidebyside">';
+				echo '<div class="studydate">'.get_post_time('j.n.Y', true, ).'</div>';
+				echo '<div class="studysubcat">';
+                $termcount = count($terms);
+				while ($termcount>0) {
+					$termcount--;
+					echo '<span class="tagprint">'; //todo make the tags look a tad nicer
+					echo(array_column($terms, 'name', ))[$termcount].' ';
+					echo '</span>';
+				};//* and print out the 'name' from every object
+				//! Why did I do this in this manner?
+				//! I mixed things up while planning and first printed out the categories only if there was more than one... 😂
+                echo '</div>'; //*studysubcat
 
+				echo '</div>'; //*sidebyside
+
+				echo '<div class="entryexcerpt">';
+                the_excerpt();
+                echo '</div>';
+
+						echo '<div class="studyimage">';
+						$image = get_the_post_thumbnail_url();//*get the img
+						$width = getimagesize($image)[0];
+						$height = getimagesize($image)[1];
+						if ($width > $height) { //*check ratio of the two values of array
+							the_post_thumbnail();
+						} else {
+							echo '<!--Please upload an image in landscape ratio-->';
+						}
+						//* if in ls, show, if not, pester in comments
+						echo '</div>'; //*thumbnail termination
+
+            echo '</div>'; //* card termination
+            $wpdb->insert($table_name, array('postid' => $postid,'posttopic' => $topic));//* insert id to table so we don't show the same id later
+    endwhile;
+
+	//?end loop for posts
+
+    echo '</div>'; //* wrapper termination
+}
+
+add_action( 'get_by_topic', 'get_by_topic',10,1 ); //priority 10, with one variable
+//*Let's create a helper table to keep things in order
+global $wpdb;
+add_action("init", "create_extra_table");
+function create_extra_table(){
+    global $wpdb;
+    require_once( ABSPATH . 'wp-admin/includes/upgrade.php' );
+    $table_name = $wpdb->prefix . "id";
+    $sql = "CREATE TABLE $table_name (
+	id int(10) unsigned NOT NULL AUTO_INCREMENT,
+	postid int(10) NOT NULL,
+	posttopic  varchar(255) NOT NULL,
+	PRIMARY KEY  (id),
+	KEY Index_2 (postid)
+	) ENGINE=InnoDB DEFAULT CHARSET=utf8;";
+    dbDelta( $sql );
+}
 
 ?>
