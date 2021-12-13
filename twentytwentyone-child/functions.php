@@ -9,6 +9,7 @@
  * Load child theme css and optional scripts
  * @return void
  */
+global $wpdb;
 
 if ( ! defined( 'ABSPATH' ) ) {
 	exit; // Exit if accessed directly.
@@ -118,35 +119,43 @@ add_filter('excerpt_more', 'excerpt_read_more', 11); //! What's overriding this?
 
 
 function get_by_topic($topic){
+    global $wpdb;
+    $table_name = $wpdb->prefix . "id";
+
 	//todo begin variables
-	$loop = new WP_Query(array( 'post_type' => 'casestudy','posts_per_page' => 10)); //* , 'posts_per_page' => 10 use this to limit amounts searched. Now just get all as we have 12 posts total
-	echo '<div class="wrapper '.$topic.'">';
+	$loop = new WP_Query(array( 'post_type' => 'casestudy')); //* , 'posts_per_page' => 10 use this to limit amounts searched. Now just get all as we have 12 posts total
+	echo '<div id="'.$topic.'" class="wrapper ">';
 	//? begin loop for post that has the right term
     echo '<span class="nice"><p>Displaying content from '.$topic.'</p></span>';
 	while ($loop->have_posts()) : $loop->the_post();
-        $table_name = $wpdb->prefix . "id";
 		$terms = get_the_terms($loop->ID, 'subcategory'); //*get the terms under "subcategory"
 		$xtermcount = count($terms); //* as the get_the_terms prints out arrays, count them
 	    //* Go through all the terms and see if slug matched the one searched for with $topic
 	    //* Use a class that either hides or shows the card according to points
         $x=0;
+        $altcat = array();//*make note of what other categories are in use
+
         while ($xtermcount>0) {
 			$xtermcount--;
 			$posted = array_column($terms, 'slug', )[$xtermcount];
             if ($posted == $topic){
 					$x=3; //* Correct topic
 					}else{
+                    array_push($altcat,$posted);//* Note down alt cat
                     $x--; //* minus a point if not correct topic
-					}
+                    }
             };
             if ($x>0){
                 $hide = "";
             }else{
-                $hide = "hide";
+                continue; //* break next to in while loop, if not enough points to print
             }
-			//* If the term matches use class don't hide
+
+
+
+
             $postid = get_the_ID();
-					the_title('<div id="'.$postid.'" class="card '.$hide.' '.$topic.'-card">
+					the_title('<div id="'.$postid.'"   class="card moveto'.implode(' ',$altcat).' '.$hide.' '.$topic.'-card">
 					<div class="studyname">
 					<h2 class="entry-title">
 					<a href="'.get_permalink().
@@ -168,13 +177,11 @@ function get_by_topic($topic){
 				//! Why did I do this in this manner?
 				//! I mixed things up while planning and first printed out the categories only if there was more than one... 😂
                 echo '</div>'; //*studysubcat
-
 				echo '</div>'; //*sidebyside
-
 				echo '<div class="entryexcerpt">';
+
                 the_excerpt();
                 echo '</div>';
-
 						echo '<div class="studyimage">';
 						$image = get_the_post_thumbnail_url();//*get the img
 						$width = getimagesize($image)[0];
@@ -186,9 +193,8 @@ function get_by_topic($topic){
 						}
 						//* if in ls, show, if not, pester in comments
 						echo '</div>'; //*thumbnail termination
-
             echo '</div>'; //* card termination
-            $wpdb->insert($table_name, array('postid' => $postid,'posttopic' => $topic));//* insert id to table so we don't show the same id later
+
     endwhile;
 
 	//?end loop for posts

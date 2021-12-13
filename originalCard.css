@@ -47,63 +47,63 @@ body {
 
 .card:nth-child(1n) {
   left: 20px;
-  left: 167px;
+  left: 161px;
   top: 86px;
-  transform: rotate(0deg);
+  transform: rotate(1deg);
 }
 
 .card:nth-child(2n) {
   left: 40px;
-  left: 88px;
-  top: 84px;
+  left: 17px;
+  top: 35px;
   transform: rotate(0deg);
 }
 
 .card:nth-child(3n) {
   left: 60px;
-  left: 171px;
-  top: 53px;
-  transform: rotate(-1deg);
+  left: 89px;
+  top: 43px;
+  transform: rotate(1deg);
 }
 
 .card:nth-child(4n) {
   left: 80px;
-  left: 80px;
-  top: 132px;
+  left: 199px;
+  top: 101px;
   transform: rotate(1deg);
 }
 
 .card:nth-child(5n) {
   left: 100px;
-  left: 9px;
-  top: 69px;
-  transform: rotate(0deg);
+  left: 166px;
+  top: 124px;
+  transform: rotate(1deg);
 }
 
 .card:nth-child(6n) {
   left: 120px;
-  left: 25px;
-  top: 129px;
+  left: 52px;
+  top: 18px;
   transform: rotate(1deg);
 }
 
 .card:nth-child(7n) {
   left: 140px;
-  left: 47px;
-  top: 131px;
-  transform: rotate(0deg);
+  left: 156px;
+  top: 9px;
+  transform: rotate(1deg);
 }
 
 .card:nth-child(8n) {
   left: 160px;
-  left: 51px;
-  top: 46px;
-  transform: rotate(0deg);
+  left: 195px;
+  top: 133px;
+  transform: rotate(1deg);
 }
 
 .card:nth-child(9n) {
   left: 180px;
-  left: 37px;
-  top: 89px;
-  transform: rotate(1deg);
+  left: 136px;
+  top: 21px;
+  transform: rotate(-1deg);
 }
