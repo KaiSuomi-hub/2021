@@ -205,19 +205,5 @@ function get_by_topic($topic){
 add_action( 'get_by_topic', 'get_by_topic',10,1 ); //priority 10, with one variable
 //*Let's create a helper table to keep things in order
 global $wpdb;
-add_action("init", "create_extra_table");
-function create_extra_table(){
-    global $wpdb;
-    require_once( ABSPATH . 'wp-admin/includes/upgrade.php' );
-    $table_name = $wpdb->prefix . "id";
-    $sql = "CREATE TABLE $table_name (
-	id int(10) unsigned NOT NULL AUTO_INCREMENT,
-	postid int(10) NOT NULL,
-	posttopic  varchar(255) NOT NULL,
-	PRIMARY KEY  (id),
-	KEY Index_2 (postid)
-	) ENGINE=InnoDB DEFAULT CHARSET=utf8;";
-    dbDelta( $sql );
-}
 
 ?>

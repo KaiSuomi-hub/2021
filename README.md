@@ -21,9 +21,7 @@ ________________________________________________________________________________
 
 
 
-4. Create a card showing a case study. Create a page listing three cards of each subcategory, so a total of nine case studies are shown at the same time
 
-5. A case study is shown only once in the listing page
 
 
 #no time for these below
@@ -51,7 +49,9 @@ ________________________________________________________________________________
    6. If the post is in several subcategories they are shown
       edit. Show  _ALL_ subcategories 😂CHECK
 7. Make the subtheme clean and well organized
+4. Create a card showing a case study. Create a page listing three cards of each subcategory, so a total of nine case studies are shown at the same time
 
+5. A case study is shown only once in the listing page
 8. Separate the the card from index to it's own card.php element
 
 
